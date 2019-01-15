@@ -1,0 +1,47 @@
+header {
+    border: 1px solid goldenrod;
+}
+.disabled {
+    color: grey;
+}
+a .disabled {
+    color: purple;
+}
+.active {
+    color: yellow;
+}
+/* header ul li {
+    display: inline;    
+} */
+
+nav ul li{
+    display: inline;
+    padding: 0px 10px
+}
+/* .parent div:first-child {
+    color: red;
+} */
+.grandparent .parent > div > div {
+    color: red;
+}
+.grandparent .parent > div > h4 ~ div {
+    color: blue;
+}
+.grandparent .parent > div > div + h4 {
+    background-color: red;
+}
+
+.grandparent .parent > div > h4 ~ div + h4 {
+    background-color: blue;
+}
+.grandparent > h4 {
+    border: 1px solid;
+    border-radius: 10px;
+}
+.promo {
+    font-weight: bold;
+    color: gold;
+}
+footer input[type="text"] {
+    line-height: 25px;
+}
