@@ -10,15 +10,29 @@ const aside = (title, style) => {
     return `<aside class="${style}">${title}</aside>`;
 }
 
+// arguments = html tag, object piece, style
+const elementBuilder = (...arguments) => {
+    return `<${arguments[0]} class="${arguments[2]}">${arguments[1]}</${arguments[0]}>`;
+}
+
+//info = student.name, student.class, studentComponent (styles), student.info
 const studentBlock = (...info) => {
     return `<div id="student">
-    ${h1(info[0], `xx-large ${info[2]}`)}
-    ${section(info[1], "section--padded")}
-    ${aside(info[3], "pushRight")}
+    ${elementBuilder("h1", info[0], `xx-large ${info[2]}`)}
+    ${elementBuilder("section", info[1], "bordered dashed section--padded")}
+    ${elementBuilder("aside", info[3], "pushRight")}
     </div>
     `
 }
 
+// const studentBlock = (...info) => {
+//     return `<div id="student">
+//     ${h1(info[0], `xx-large ${info[2]}`)}
+//     ${section(info[1], "section--padded")}
+//     ${aside(info[3], "pushRight")}
+//     </div>
+//     `
+// }
 //remember to use return keyword if using curly braces in arrow composition functions such as above
 
 const container = document.querySelector("#container");
@@ -31,12 +45,23 @@ const container = document.querySelector("#container");
 //         container.innerHTML += studentHTMLRepresentation;
 // })
 
+// for (student of students) {
+//     let studentComponent = "";
+//     if (student.score >= 60) {
+//         studentComponent = studentBlock(student.name, student.class, "passing", student.info)
+//     } else {
+//         studentComponent = studentBlock(student.name, student.class, "failing", student.info)
+//     }
+//     container.innerHTML += studentComponent;
+// }
+
+//nathan's simpler version
 for (student of students) {
     let studentComponent = "";
     if (student.score >= 60) {
-        studentComponent = studentBlock(student.name, student.class, "passing", student.info)
+        studentComponent = "passing";
     } else {
-        studentComponent = studentBlock(student.name, student.class, "failing", student.info)
+        studentComponent = "failing";
     }
-    container.innerHTML += studentComponent;
+    container.innerHTML += studentBlock(student.name, student.class, studentComponent, student.info);
 }
