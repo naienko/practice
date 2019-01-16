@@ -10,11 +10,11 @@ const aside = (title, style) => {
     return `<aside class="${style}">${title}</aside>`;
 }
 
-const studentBlock = (name, sectionContent, passFail, info) => {
+const studentBlock = (...info) => {
     return `<div id="student">
-    ${h1(name, `xx-large ${passFail}`)}
-    ${section(sectionContent, "section--padded")}
-    ${aside(info, "pushRight")}
+    ${h1(info[0], `xx-large ${info[2]}`)}
+    ${section(info[1], "section--padded")}
+    ${aside(info[3], "pushRight")}
     </div>
     `
 }
@@ -31,7 +31,7 @@ const container = document.querySelector("#container");
 //         container.innerHTML += studentHTMLRepresentation;
 // })
 
-for (let student of students) {
+for (student of students) {
     let studentComponent = "";
     if (student.score >= 60) {
         studentComponent = studentBlock(student.name, student.class, "passing", student.info)
